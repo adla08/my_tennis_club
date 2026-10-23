@@ -1,10 +1,17 @@
 from django.contrib import admin
-from .models import Member
+from .models import Conteudo, Menu
 
-# Register your models here.
 
-class MemberAdmin(admin.ModelAdmin):
-  list_display = ("firstname", "lastname", "joined_date",)
-  
-admin.site.register(Member, MemberAdmin)
+@admin.register(Conteudo)
+class ConteudoAdmin(admin.ModelAdmin):
+    list_display = ("titulo", "slug", "ativo")
+    prepopulated_fields = {"slug": ("titulo",)}
+    list_filter = ("ativo",)
+
+
+@admin.register(Menu)
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ("titulo", "tipo_destino", "ordem", "ativo")
+    list_filter = ("tipo_destino", "ativo")
+    ordering = ("ordem",)
 

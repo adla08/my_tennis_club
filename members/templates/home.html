@@ -1,0 +1,1258 @@
+{% load static %}
+
+<!-- Gabriele Adla Barbosa | Thayse Soares Cordeiro | ATV05 | Turma 513 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<!--
+Permite que o site se adapte corretamente
+em celulares e tablets.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portal da Dupla</title>
+
+<!--
+Ícone exibido na aba do navegador.
+-->
+<link rel="icon" href="img/fav.jpg">
+
+<style>
+
+/*
+CONFIGURAÇÃO GERAL DO SITE.
+Remove as margens do navegador
+e define fonte e cores.
+*/
+
+body{
+
+    margin:0;
+
+    font-family:"Segoe UI",Arial,sans-serif;
+
+    background:#0b0b10;
+
+    color:#eaeaea;
+
+}
+
+/*
+HEADER:
+Tag semântica responsável
+pelo cabeçalho do portal.
+*/
+
+header{
+
+    position:relative;
+
+    background-image: url("{% static 'img/ceu.jpg' %}");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    padding:25px;
+
+    border-bottom:1px solid #222;
+
+}
+
+/*
+Escurece a imagem do cabeçalho
+para melhorar a leitura do título.
+*/
+
+header::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.6);
+
+}
+
+/*
+FLEXBOX:
+Alinha os logos e o título
+na mesma linha.
+*/
+
+.topo-container{
+
+    position:relative;
+
+    z-index:1;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    max-width:1000px;
+
+    margin:auto;
+
+}
+
+header h1{
+
+    color:white;
+
+    font-size:40px;
+
+    letter-spacing:2px;
+
+}
+
+.logo{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+}
+
+/*
+LAYOUT:
+Flexbox organiza o menu e o conteúdo
+lado a lado.
+*/
+
+.layout{
+
+    display:flex;
+
+}
+
+/*
+NAV:
+Tag semântica utilizada para
+representar o menu de navegação.
+*/
+
+nav{
+
+    width:300px;
+
+    background:#12121a;
+
+    padding:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    min-height:100vh;
+
+    border-right:1px solid #222;
+
+}
+
+nav button{
+
+    padding:35px;
+
+    border:none;
+
+    background:#1b1b27;
+
+    color:#eaeaea;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    transition:.5s;
+
+}
+
+nav button:hover{
+
+    background:#2a2a3d;
+
+}
+
+/*
+MAIN:
+Tag semântica que reúne
+todo o conteúdo principal.
+*/
+
+main{
+
+    flex:1;
+
+    width:100%;
+
+}
+
+/*
+SECTION:
+Cada página do portal
+fica dentro de uma section.
+*/
+
+.pagina{
+
+    display:none;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    background:#141420;
+
+    padding:40px;
+
+    border:1px solid #222;
+
+}
+
+#home{
+
+    display:block;
+
+}
+
+.subtitulo{
+
+    color:#aaa;
+
+    margin-bottom:20px;
+
+}
+
+/*
+ARTICLE:
+Cada bloco de conteúdo
+é representado por um article.
+*/
+
+.card,
+.bloco-home{
+
+    background:#1a1a28;
+
+    border:1px solid #222;
+
+    padding:26px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+}
+
+.perfil{
+
+    display:flex;
+
+    gap:20px;
+
+    background:#1a1a28;
+
+    border:1px solid #222;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+.perfil img{
+
+    width:220px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+}
+
+.perfil .card{
+
+    flex:1;
+
+    margin:0;
+
+}
+
+/*
+IMAGENS:
+Faz com que todas as imagens
+se adaptem ao tamanho da tela.
+*/
+
+img{
+
+    max-width:100%;
+
+    height:auto;
+
+    border-radius:10px;
+
+}
+
+.imagem-tema{
+
+    width:100%;
+
+    max-width:320px;
+
+    display:block;
+
+    margin:10px 0;
+
+    border-radius:12px;
+
+}
+
+/*
+Aumenta o tamanho da fonte
+dos temas.
+*/
+
+#gabiTema,
+#thayseTema{
+
+    font-size:20px;
+
+    line-height:1.9;
+
+}
+
+#gabiTema h2,
+#thayseTema h2{
+
+    font-size:30px;
+
+}
+
+#gabiTema h3,
+#thayseTema h3{
+
+    font-size:24px;
+
+}
+
+/*
+FOOTER:
+Tag semântica responsável
+pelo rodapé do portal.
+*/
+
+footer{
+
+    text-align:center;
+
+    padding:20px;
+
+    background:#0f0f17;
+
+    border-top:1px solid #222;
+
+    color:#aaa;
+
+}
+
+/*
+MEDIA QUERY:
+Quando a tela for menor que 768px,
+o menu passa para cima e o conteúdo
+ocupa toda a largura da tela.
+*/
+
+@media(max-width:768px){
+
+    .layout{
+
+        flex-direction:column;
+
+    }
+
+    nav{
+
+        width:auto;
+
+        min-height:auto;
+
+    }
+
+    .perfil{
+
+        flex-direction:column;
+
+    }
+
+    .topo-container{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<!--
+NOSCRIPT:
+Mensagem exibida caso
+o JavaScript esteja desativado.
+-->
+
+<noscript>
+
+<p>Ative o JavaScript para usar o portal corretamente.</p>
+
+</noscript>
+
+<!--
+HEADER:
+Cabeçalho principal do portal.
+-->
+
+<header>
+
+<!--
+SECTION:
+Organiza os logos e o título
+do cabeçalho.
+-->
+
+<section class="topo-container">
+
+<img src="{% static 'img/logo1.png' %}" class="logo" alt="Logo 1">
+
+<h1>Portal da Dupla</h1>
+
+<img src="{% static 'img/logo2.png' %}" class="logo" alt="Logo 2">
+
+</section>
+
+</header>
+
+<!--
+SECTION:Organiza o menu e o conteúdo
+principal lado a lado.
+-->
+
+<section class="layout">
+
+<!--
+NAV:
+Menu de navegação do portal.
+-->
+
+<nav>
+
+<button onclick="mostrarPagina('home')">Home</button>
+
+<button onclick="mostrarPagina('gabiCurriculo')">Currículo Gabriele</button>
+
+<button onclick="mostrarPagina('gabiTema')">Tema Gabriele</button>
+
+<button onclick="mostrarPagina('thayseCurriculo')">Currículo Thayse</button>
+
+<button onclick="mostrarPagina('thayseTema')">Tema Thayse</button>
+
+</nav>
+
+<!--
+MAIN:
+Área onde ficam todas
+as páginas do portal.
+-->
+
+<main>
+
+<!--
+SECTION:
+Página inicial do portal.
+-->
+
+<section id="home" class="pagina">
+
+<h2>Bem-vindos ao Portal da Dupla</h2>
+
+<article class="bloco-home">
+
+<h3>Sobre o site</h3>
+
+<p>
+Este portal foi desenvolvido para apresentar os currículos das integrantes e os temas pesquisados: a Fúria da Luz e Attack on Titan.
+</p>
+
+</article>
+
+<article class="bloco-home">
+
+<h3>Integrantes</h3>
+
+<p>• Gabriele Adla Barbosa da Silva💜</p>
+
+<p>• Thayse Soares Cordeiro 💗</p>
+
+</article>
+
+<article class="bloco-home">
+
+<p>
+Utilize o menu lateral para navegar entre os currículos e os temas apresentados.
+</p>
+
+</article>
+
+</section>
+<!--
+SECTION:
+Área destinada ao currículo
+da Gabriele.
+-->
+
+<section id="gabiCurriculo" class="pagina">
+
+<h2>Currículo - Gabriele</h2>
+
+<!--
+ARTICLE:
+Bloco com foto e
+informações pessoais.
+-->
+
+<article class="perfil">
+
+<img src="{% static 'img/eu.jpeg' %}" alt="Foto de Gabriele">
+
+<section class="card">
+
+<p><b>Nascimento:</b> 16/04/2008</p>
+
+<p><b>Idade:</b> 18 anos</p>
+
+<p><b>Escola atual:</b> IFAL - Campus Palmeira dos Índios</p>
+
+<p><b>Curso:</b> Técnico em Informática</p>
+
+</section>
+
+</article>
+
+<!--
+ARTICLE:
+Objetivo profissional.
+-->
+
+<article class="card">
+
+<h3>Objetivo</h3>
+
+<p>
+Ingressar na área de enfermagem com
+desenvolvimento acadêmico e pessoal.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Habilidades da integrante.
+-->
+
+<article class="card">
+
+<h3>Habilidades</h3>
+
+<p>
+Comunicação, responsabilidade e liderança.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Hobbies da integrante.
+-->
+
+<article class="card">
+
+<h3>Hobbies</h3>
+
+<p>
+Músicas, treinos, séries e jogos.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Informações de contato.
+-->
+
+<article class="card">
+
+<p><b>Instagram:</b> gabrieleadla</p>
+
+<p><b>Email:</b> gabs1@aluno.ifal.edu.br</p>
+
+</article>
+
+</section>
+<!--
+SECTION:
+Área destinada ao tema
+escolhido por Gabriele.
+-->
+
+<section id="gabiTema" class="pagina">
+
+<h2>Fúria da Luz (Light Fury)</h2>
+
+<img src="{% static 'img/fu.jpg' %}" class="imagem-tema" alt="Fúria da Luz">
+
+<!--
+ARTICLE:
+Origem da personagem.
+-->
+
+<article class="card">
+
+<h3>1. Origem</h3>
+
+<p>
+A Fúria da Luz aparece pela primeira vez no filme "Como Treinar o Seu Dragão:
+O Mundo Oculto", sendo apresentada como uma nova espécie de dragão relacionada
+à Fúria da Noite. Ela foi criada como uma variação da espécie de Banguela,
+mostrando que existiam outros dragões semelhantes que ainda não haviam sido
+descobertos.
+
+Sua origem está ligada ao Mundo Oculto, um lugar secreto onde os dragões vivem
+longe dos humanos. Sua criação também ampliou o universo da franquia e reforçou
+a importância da liberdade e da preservação da natureza.
+</p>
+
+<img src="{% static 'img/fb.jpg' %}" class="imagem-tema" alt="Origem da Fúria da Luz">
+
+</article>
+
+<!--
+ARTICLE:
+Características físicas.
+-->
+
+<article class="card">
+
+<h3>2. Aparência física</h3>
+
+<p>
+A Fúria da Luz possui um corpo branco com leves tons azulados e rosados que
+aparecem conforme a iluminação. Seu corpo é fino e aerodinâmico, permitindo
+voos rápidos e silenciosos.
+
+Suas asas largas favorecem grandes velocidades e mudanças rápidas de direção.
+Além disso, seus olhos claros e sua aparência delicada contrastam com sua força,
+fazendo dela uma das espécies mais bonitas e marcantes da franquia.
+</p>
+
+<img src="{% static 'img/f.jpeg' %}" class="imagem-tema" alt="Aparência da Fúria da Luz">
+
+</article>
+
+<!--
+ARTICLE:
+Principais habilidades.
+-->
+
+<article class="card">
+
+<h3>3. Habilidades</h3>
+
+<p>
+Sua principal habilidade é a camuflagem por reflexão da luz, permitindo que
+fique praticamente invisível em determinadas situações. Além disso, possui
+grande velocidade, excelente capacidade de voo e ataques de plasma semelhantes
+aos da Fúria da Noite.
+
+Também demonstra inteligência para tomar decisões, adaptar-se aos desafios e
+proteger aqueles com quem cria vínculos.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Velocidade e furtividade.
+-->
+
+<article class="card">
+
+<h3>4. Velocidade e furtividade</h3>
+
+<p>
+A Fúria da Luz é extremamente rápida e silenciosa. Sua velocidade, combinada
+com sua camuflagem, faz dela uma das criaturas mais difíceis de localizar
+durante um voo ou combate.
+</p>
+
+<img src="{% static 'img/voando.jpg' %}" class="imagem-tema" alt="Fúria da Luz voando">
+
+</article>
+
+<!--
+ARTICLE:
+Inteligência e comportamento.
+-->
+
+<article class="card">
+
+<h3>5. Inteligência e comportamento</h3>
+
+<p>
+A Fúria da Luz demonstra grande inteligência ao observar o ambiente, aprender
+com as experiências e criar estratégias para enfrentar desafios.
+
+Seu comportamento é marcado pela curiosidade, independência e cautela. Embora
+inicialmente desconfie dos humanos, é capaz de desenvolver fortes laços de
+amizade e demonstrar proteção com aqueles em quem confia.
+</p>
+
+</article>
+<!--
+ARTICLE:
+Força e combate.
+-->
+
+<article class="card">
+
+<h3>6. Força e combate</h3>
+
+<p>
+Apesar da aparência delicada, possui grande força física e excelente capacidade
+de combate. Utiliza velocidade, inteligência e camuflagem para surpreender seus
+inimigos, além de lançar poderosas rajadas de plasma.
+
+Sua combinação de estratégia, agilidade e resistência faz dela uma das espécies
+mais completas do universo de "Como Treinar o Seu Dragão".
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Fraqueza da espécie.
+-->
+
+<article class="card">
+
+<h3>7. Fraqueza</h3>
+
+<p>
+Assim como a Fúria da Noite, depende da cauda para manter a estabilidade durante
+o voo. Caso essa região seja danificada, sua capacidade de voar pode ser
+comprometida.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Relação com Banguela.
+-->
+
+<article class="card">
+
+<h3>8. Relação com a Fúria da Noite</h3>
+
+<p>
+Ela se torna companheira de Banguela, formando um importante vínculo ao longo da
+história. Juntos, ajudam a mostrar a importância da liberdade e da convivência
+entre diferentes espécies.
+</p>
+
+<img src="{% static 'img/banguela.jpg' %}" class="imagem-tema" alt="Banguela e Fúria da Luz">
+
+</article>
+
+<!--
+ARTICLE:
+Curiosidades.
+-->
+
+<article class="card">
+
+<h3>9. Curiosidades</h3>
+
+<p>
+ A Fúria da Luz faz sua primeira aparição no filme <b>Como Treinar o Seu Dragão: O Mundo Oculto</b>.<br>
+• Seu visual foi inspirado em animais como leopardos-das-neves, salamandras e felinos.<br>
+• Ela possui a habilidade de se camuflar refletindo a luz, tornando-se praticamente invisível.<br>
+• É considerada uma espécie muito rara no universo da franquia.<br>
+• Muitos fãs elogiaram sua beleza e suas habilidades, mas parte do público criticou a personagem por acreditar que seu romance com Banguela contribuiu para o afastamento da amizade entre ele e Soluço no final da história.<br>
+• Mesmo dividindo opiniões, a Fúria da Luz se tornou uma das personagens mais conhecidas da franquia.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Link para pesquisa.
+-->
+
+<article class="card">
+
+<h3>10. Link para pesquisa</h3>
+
+<p>
+
+<a href="https://share.google/QNdrUBG9h8YawRqfQ" target="_blank">
+
+Assistir vídeo sobre a Fúria da Luz
+
+</a>
+
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Opinião do público.
+-->
+
+<article class="card">
+
+<h3>11. Opinião do público</h3>
+
+<p>
+A Fúria da Luz recebeu opiniões variadas dos fãs. Muitos elogiaram seu visual,
+suas habilidades e sua importância para a história de Banguela. Outros
+consideraram que ela poderia ter recebido mais desenvolvimento ao longo do
+filme.
+
+Mesmo com opiniões divididas, tornou-se uma das personagens mais marcantes da
+franquia e conquistou muitos admiradores.
+</p>
+
+</article>
+
+</section>
+<!--
+SECTION:
+Área destinada ao currículo
+da integrante Thayse.
+-->
+
+<section id="thayseCurriculo" class="pagina">
+
+<h2>Currículo - Thayse</h2>
+
+<!--
+ARTICLE:
+Bloco com foto e
+informações pessoais.
+-->
+
+<article class="perfil">
+
+<img src="{% static 'img/eu.jpg' %}" alt="Foto de Thayse">
+
+<section class="card">
+
+<p><b>Nascimento:</b> 15/06/2008</p>
+
+<p><b>Idade:</b> 18 anos</p>
+
+<p><b>Escola atual:</b> IFAL - Campus Palmeira dos Índios</p>
+
+<p><b>Curso:</b> Técnico em Informática</p>
+
+</section>
+
+</article>
+
+<!--
+ARTICLE:
+Objetivo profissional.
+-->
+
+<article class="card">
+
+<h3>Objetivo</h3>
+
+<p>
+Desenvolvimento acadêmico na área de tecnologia.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Habilidades da integrante.
+-->
+
+<article class="card">
+
+<h3>Habilidades</h3>
+
+<p>
+Desenho e edição de mídia.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Hobbies da integrante.
+-->
+
+<article class="card">
+
+<h3>Hobbies</h3>
+
+<p>
+Músicas, filmes, treinos e cozinhar.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Informações de contato.
+-->
+
+<article class="card">
+
+<p><b>Instagram:</b> thaysee.sc</p>
+
+<p><b>Email:</b> tsc16@aluno.ifal.edu.br</p>
+
+</article>
+
+</section>
+<!--
+SECTION:
+Área destinada ao tema
+Attack on Titan.
+-->
+
+<section id="thayseTema" class="pagina">
+
+<h2>Attack on Titan (Shingeki no Kyojin)</h2>
+
+<img src="{% static 'img/at.jpg' %}" class="imagem-tema" alt="Attack on Titan">
+
+<p>
+Attack on Titan é um anime e mangá criado por Hajime Isayama.
+A história acompanha a humanidade vivendo dentro de enormes muralhas
+para se proteger dos Titãs, criaturas gigantes que ameaçam sua existência.
+Ao longo da obra, o enredo evolui para temas como liberdade, guerra,
+política, preconceito e sobrevivência.
+</p>
+
+<!--
+ARTICLE:
+O mundo dentro das muralhas.
+-->
+
+<article class="card">
+
+<h3>1. O mundo dentro das muralhas</h3>
+
+<p>
+No universo de Attack on Titan, a humanidade vive protegida por três enormes
+muralhas chamadas Maria, Rose e Sheena. Elas foram construídas para defender
+as pessoas dos Titãs, criaturas gigantes que representam uma ameaça constante.
+Durante muitos anos, todos acreditavam que viver dentro das muralhas era a
+única forma de sobreviver.
+Com o passar da história, os personagens descobrem que existem muitos segredos
+sobre a origem das muralhas, dos Titãs e do mundo além delas. Essas descobertas
+mudam completamente a visão dos protagonistas e tornam a luta pela liberdade
+ainda mais importante.</p>
+
+<img src="{% static 'img/muralha.jpg' %}" class="imagem-tema" alt="Muralhas">
+
+</article>
+
+<!--
+ARTICLE:
+Os Titãs.
+-->
+
+<article class="card">
+
+<h3>2. Os Titãs</h3>
+
+<p>
+Os Titãs são criaturas gigantes que representam a principal ameaça à humanidade
+em Attack on Titan. A maioria deles age por instinto e ataca humanos sem um
+motivo aparente. Além dos Titãs Puros, existem os Titãs Inteligentes, que
+possuem consciência, habilidades especiais e podem ser controlados por pessoas.
+Cada um deles tem características únicas e desempenha um papel fundamental no
+desenvolvimento da história.</p>
+
+<img src="{% static 'img/ti.jpg' %}" class="imagem-tema" alt="Titãs">
+
+</article>
+
+<!--
+ARTICLE:
+Eren Yeager.
+-->
+
+<article class="card">
+
+<h3>3. Eren Yeager</h3>
+
+<p>
+Eren Yeager é o protagonista de Attack on Titan. Após presenciar a morte de sua
+mãe durante o ataque dos Titãs, ele decide dedicar sua vida a combater essas
+criaturas e conquistar a liberdade da humanidade. Ao longo da história, Eren
+descobre que possui o poder de se transformar em Titã, o que muda completamente
+seu destino. Suas escolhas e decisões têm grande impacto no desenvolvimento da
+trama, tornando-o um dos personagens mais importantes e complexos da obra.</p>
+
+<img src="{% static 'img/eren.jpg' %}" class="imagem-tema" alt="Eren Yeager">
+
+</article>
+
+<!--
+ARTICLE:
+Mikasa Ackerman.
+-->
+
+<article class="card">
+
+<h3>4. Mikasa Ackerman</h3>
+
+<p>
+Mikasa Ackerman é uma das personagens mais fortes e habilidosas de Attack on Titan.
+Desde a infância, ela protege Eren Yeager e demonstra grande coragem, lealdade
+e determinação. Graças ao seu excelente domínio do equipamento de manobra
+tridimensional, torna-se uma das melhores soldados da Tropa de Exploração.
+Além de sua força física, Mikasa também se destaca pela inteligência e pela
+capacidade de manter a calma mesmo nas situações mais perigosas.</p>
+
+<img src="{% static 'img/mikasa.jpg' %}" class="imagem-tema" alt="Mikasa">
+
+</article>
+
+<!--
+ARTICLE:
+Armin Arlert.
+-->
+
+<article class="card">
+
+<h3>5. Armin Arlert</h3>
+
+<p>
+Armin Arlert é um dos melhores amigos de Eren e Mikasa. Embora não tenha grande
+força física, destaca-se por sua inteligência, criatividade e habilidade para
+criar estratégias durante as batalhas. Suas ideias ajudam a Tropa de Exploração
+em diversos momentos importantes, tornando-o um dos personagens mais
+indispensáveis da história. Ao longo da obra, Armin amadurece e assume grandes
+responsabilidades na luta pela sobrevivência da humanidade.</p>
+
+<img src="{% static 'img/armin.jpg' %}" class="imagem-tema" alt="Armin">
+
+</article>
+<!--
+ARTICLE:
+O segredo das muralhas.
+-->
+
+<article class="card">
+
+<h3>6. As muralhas e o segredo</h3>
+
+<p>
+As muralhas escondem um dos maiores mistérios de Attack on Titan. Durante muito
+tempo, a humanidade acreditou que elas existiam apenas para protegê-la dos
+Titãs. Porém, ao longo da história, diversos segredos são revelados, mostrando
+que a origem das muralhas e dos próprios Titãs está ligada ao passado da
+humanidade. Essas descobertas mudam completamente o rumo da história e a forma
+como os personagens enxergam o mundo em que vivem.</p>
+
+</article>
+
+<!--
+ARTICLE:
+Marley e Paradis.
+-->
+
+<article class="card">
+
+<h3>7. Marley e Paradis</h3>
+
+<p>
+Marley e Paradis são duas nações que possuem um longo histórico de conflitos em
+Attack on Titan. Marley é uma potência militar que utiliza o poder dos Titãs
+como arma de guerra, enquanto Paradis é a ilha onde vivem os protagonistas da
+história. O confronto entre os dois lados revela temas como preconceito,
+manipulação, guerra e busca pela liberdade, mostrando que cada povo possui sua
+própria versão dos acontecimentos.</p>
+
+<img src="{% static 'img/marley.jpg' %}" class="imagem-tema" alt="Marley">
+
+</article>
+
+<!--
+ARTICLE:
+Temas principais.
+-->
+
+<article class="card">
+
+<h3>8. Temas principais</h3>
+
+<p>
+Attack on Titan aborda temas profundos que vão além da luta contra os Titãs.
+A obra fala sobre liberdade, sobrevivência, amizade, coragem, preconceito,
+guerra e as consequências das escolhas feitas pelos personagens. Também mostra
+como o medo, a busca por poder e os conflitos entre diferentes povos podem
+influenciar o destino de toda a humanidade, tornando a história marcante e
+cheia de reflexões.
+</p>
+
+</article>
+
+<!--
+ARTICLE:
+Curiosidades.
+-->
+
+<article class="card">
+
+<h3>9. Curiosidades</h3>
+
+<p>
+• O nome original da obra é <b>Shingeki no Kyojin</b>, que significa "Titã de Ataque".<br>
+• O autor Hajime Isayama se inspirou em cidades cercadas por montanhas para criar as muralhas.<br>
+• Levi Ackerman é um dos personagens mais populares entre os fãs do anime.<br>
+• O anime ficou conhecido pelas grandes reviravoltas e por quebrar expectativas do público.<br>
+• A trilha sonora, composta por Hiroyuki Sawano, é considerada uma das melhores dos animes.<br>
+• O mangá foi publicado entre 2009 e 2021, enquanto o anime estreou em 2013.<br>
+• Attack on Titan recebeu diversos prêmios e se tornou uma das obras mais famosas da história dos animes.</p>
+
+</article>
+
+<!--
+ARTICLE:
+Link para pesquisa.
+-->
+
+<article class="card">
+
+<h3>10. Link para pesquisa</h3>
+
+<p>
+
+<a href="https://pt.wikipedia.org/wiki/Shingeki_no_Kyojin" target="_blank">
+
+Clique aqui para saber mais na Wikipédia
+
+</a>
+
+</p>
+
+</article>
+
+</section>
+</main>
+
+</section>
+
+<!--
+FOOTER:
+Tag semântica responsável
+pelo rodapé do portal.
+-->
+
+<footer>
+
+<p>Turma 513</p>
+
+</footer>
+
+<script>
+
+/*
+Lista com todas as páginas
+utilizadas pelo menu.
+*/
+
+let paginas = [
+
+"home",
+
+"gabiCurriculo",
+
+"gabiTema",
+
+"thayseCurriculo",
+
+"thayseTema"
+
+];
+
+/*
+Esconde todas as páginas
+antes de abrir outra.
+*/
+
+function esconderTudo(){
+
+    for(let i = 0; i < paginas.length; i++){
+
+        document.getElementById(paginas[i]).style.display = "none";
+
+    }
+
+}
+
+/*
+Mostra somente a página
+selecionada pelo usuário.
+*/
+
+function mostrarPagina(id){
+
+    esconderTudo();
+
+    document.getElementById(id).style.display = "block";
+
+}
+
+</script>
+
+</body>
+
+</html>
+
