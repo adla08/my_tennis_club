@@ -1,0 +1,394 @@
+
+/*
+CONFIGURAÇÃO GERAL DO SITE.
+Remove as margens do navegador
+e define fonte e cores.
+*/
+
+body{
+
+    margin:0;
+
+    font-family:"Segoe UI",Arial,sans-serif;
+
+    background:#0b0b10;
+
+    color:#eaeaea;
+
+}
+
+/*
+HEADER:
+Tag semântica responsável
+pelo cabeçalho do portal.
+*/
+
+header{
+
+    position:relative;
+
+    background-image: url("{% static 'img/ceu.jpg' %}");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    padding:25px;
+
+    border-bottom:1px solid #222;
+
+}
+
+/*
+Escurece a imagem do cabeçalho
+para melhorar a leitura do título.
+*/
+
+header::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.6);
+
+}
+
+/*
+FLEXBOX:
+Alinha os logos e o título
+na mesma linha.
+*/
+
+.topo-container{
+
+    position:relative;
+
+    z-index:1;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    max-width:1000px;
+
+    margin:auto;
+
+}
+
+header h1{
+
+    color:white;
+
+    font-size:40px;
+
+    letter-spacing:2px;
+
+}
+
+.logo{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+}
+
+/*
+LAYOUT:
+Flexbox organiza o menu e o conteúdo
+lado a lado.
+*/
+
+.layout{
+
+    display:flex;
+
+}
+
+/*
+NAV:
+Tag semântica utilizada para
+representar o menu de navegação.
+*/
+
+nav{
+
+    width:300px;
+
+    background:#12121a;
+
+    padding:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    min-height:100vh;
+
+    border-right:1px solid #222;
+
+}
+
+nav button{
+
+    padding:35px;
+
+    border:none;
+
+    background:#1b1b27;
+
+    color:#eaeaea;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    transition:.5s;
+
+}
+
+nav button:hover{
+
+    background:#2a2a3d;
+
+}
+
+/*
+MAIN:
+Tag semântica que reúne
+todo o conteúdo principal.
+*/
+
+main{
+
+    flex:1;
+
+    width:100%;
+
+}
+
+/*
+SECTION:
+Cada página do portal
+fica dentro de uma section.
+*/
+
+.pagina{
+
+    display:none;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    background:#141420;
+
+    padding:40px;
+
+    border:1px solid #222;
+
+}
+
+#home{
+
+    display:block;
+
+}
+
+.subtitulo{
+
+    color:#aaa;
+
+    margin-bottom:20px;
+
+}
+
+/*
+ARTICLE:
+Cada bloco de conteúdo
+é representado por um article.
+*/
+
+.card,
+.bloco-home{
+
+    background:#1a1a28;
+
+    border:1px solid #222;
+
+    padding:26px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+}
+
+.perfil{
+
+    display:flex;
+
+    gap:20px;
+
+    background:#1a1a28;
+
+    border:1px solid #222;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+.perfil img{
+
+    width:220px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+}
+
+.perfil .card{
+
+    flex:1;
+
+    margin:0;
+
+}
+
+/*
+IMAGENS:
+Faz com que todas as imagens
+se adaptem ao tamanho da tela.
+*/
+
+img{
+
+    max-width:100%;
+
+    height:auto;
+
+    border-radius:10px;
+
+}
+
+.imagem-tema{
+
+    width:100%;
+
+    max-width:320px;
+
+    display:block;
+
+    margin:10px 0;
+
+    border-radius:12px;
+
+}
+
+/*
+Aumenta o tamanho da fonte
+dos temas.
+*/
+
+#gabiTema,
+#thayseTema{
+
+    font-size:20px;
+
+    line-height:1.9;
+
+}
+
+#gabiTema h2,
+#thayseTema h2{
+
+    font-size:30px;
+
+}
+
+#gabiTema h3,
+#thayseTema h3{
+
+    font-size:24px;
+
+}
+
+/*
+FOOTER:
+Tag semântica responsável
+pelo rodapé do portal.
+*/
+
+footer{
+
+    text-align:center;
+
+    padding:20px;
+
+    background:#0f0f17;
+
+    border-top:1px solid #222;
+
+    color:#aaa;
+
+}
+
+/*
+MEDIA QUERY:
+Quando a tela for menor que 768px,
+o menu passa para cima e o conteúdo
+ocupa toda a largura da tela.
+*/
+
+@media(max-width:768px){
+
+    .layout{
+
+        flex-direction:column;
+
+    }
+
+    nav{
+
+        width:auto;
+
+        min-height:auto;
+
+    }
+
+    .perfil{
+
+        flex-direction:column;
+
+    }
+
+    .topo-container{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
